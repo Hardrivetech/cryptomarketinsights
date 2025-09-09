@@ -31,5 +31,7 @@ export default function (eleventyConfig) {
     },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
+    // Allows using the `url` filter in templates to prefix links for GitHub Pages project sites
+    pathPrefix: process.env.PATH_PREFIX || "/",
   };
 }
