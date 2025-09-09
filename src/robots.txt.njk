@@ -4,4 +4,8 @@ excludeFromSitemap: true
 ---
 User-agent: *
 Allow: /
-Sitemap: {{ (site.baseUrl ~ 'sitemap.xml') if site.baseUrl else (url('/sitemap.xml')) }}
+{% if site.baseUrl %}
+Sitemap: {{ site.baseUrl }}sitemap.xml
+{% else %}
+Sitemap: {{ '/sitemap.xml' | url }}
+{% endif %}

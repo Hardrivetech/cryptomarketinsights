@@ -4,22 +4,42 @@ excludeFromSitemap: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {# Home #}
   <url>
-    <loc>{{ site.baseUrl or (url('/') ) }}</loc>
+    {% if site.baseUrl %}
+      <loc>{{ site.baseUrl }}</loc>
+    {% else %}
+      <loc>{{ '/' | url }}</loc>
+    {% endif %}
     <changefreq>daily</changefreq>
   </url>
+
+  {# Static pages #}
   <url>
-    <loc>{{ (site.baseUrl ~ 'about/') if site.baseUrl else (url('/about/')) }}</loc>
+    {% if site.baseUrl %}
+      <loc>{{ site.baseUrl }}about/</loc>
+    {% else %}
+      <loc>{{ '/about/' | url }}</loc>
+    {% endif %}
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>{{ (site.baseUrl ~ 'privacy/') if site.baseUrl else (url('/privacy/')) }}</loc>
+    {% if site.baseUrl %}
+      <loc>{{ site.baseUrl }}privacy/</loc>
+    {% else %}
+      <loc>{{ '/privacy/' | url }}</loc>
+    {% endif %}
     <changefreq>yearly</changefreq>
   </url>
-  {% for coin in collections.all | where('fileSlug', 'coin') | first %}{% endfor %}
+
+  {# Coin detail pages #}
   {% for coin in coins %}
   <url>
-    <loc>{{ (site.baseUrl ~ 'coins/' ~ coin.id ~ '/') if site.baseUrl else (url('/coins/' ~ coin.id ~ '/')) }}</loc>
+    {% if site.baseUrl %}
+      <loc>{{ site.baseUrl }}coins/{{ coin.id }}/</loc>
+    {% else %}
+      <loc>{{ ('/coins/' ~ coin.id ~ '/') | url }}</loc>
+    {% endif %}
     <changefreq>daily</changefreq>
   </url>
   {% endfor %}
