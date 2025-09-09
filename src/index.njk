@@ -10,7 +10,7 @@ description: Live market data refreshed daily
 <div class="grid">
   {% for coin in coins %}
   <article class="card">
-    <a href="/coins/{{ coin.id }}/">
+    <a href="{{ ('/coins/' ~ coin.id ~ '/') | url }}">
       <img src="{{ coin.image }}" alt="{{ coin.name }} logo" loading="lazy" width="32" height="32">
       <h3>{{ coin.name }} ({{ coin.symbol | upper }})</h3>
     </a>
