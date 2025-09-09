@@ -1,0 +1,26 @@
+---
+permalink: sitemap.xml
+excludeFromSitemap: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ site.baseUrl or (url('/') ) }}</loc>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>{{ (site.baseUrl ~ 'about/') if site.baseUrl else (url('/about/')) }}</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>{{ (site.baseUrl ~ 'privacy/') if site.baseUrl else (url('/privacy/')) }}</loc>
+    <changefreq>yearly</changefreq>
+  </url>
+  {% for coin in collections.all | where('fileSlug', 'coin') | first %}{% endfor %}
+  {% for coin in coins %}
+  <url>
+    <loc>{{ (site.baseUrl ~ 'coins/' ~ coin.id ~ '/') if site.baseUrl else (url('/coins/' ~ coin.id ~ '/')) }}</loc>
+    <changefreq>daily</changefreq>
+  </url>
+  {% endfor %}
+</urlset>
