@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}" />
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  {# Google AdSense (replace with real publisher id) #}
+  {% if site.adsense.publisherId %}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.publisherId }}" crossorigin="anonymous"></script>
+  {% endif %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1><a href="/">{{ site.title }}</a></h1>
+      <p>{{ site.description }}</p>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© {{ site.title }} — Updated daily. Data by <a href="https://www.coingecko.com/en/api" rel="nofollow noopener" target="_blank">CoinGecko</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Top 100 Cryptocurrencies by Market Cap
+description: Live market data refreshed daily
+---
+
+<h2>Top Coins</h2>
+<p>Programmatically updated from CoinGecko each day.</p>
+
+<div class="grid">
+  {% for coin in coins %}
+  <article class="card">
+    <a href="/coins/{{ coin.id }}/">
+      <img src="{{ coin.image }}" alt="{{ coin.name }} logo" loading="lazy" width="32" height="32">
+      <h3>{{ coin.name }} ({{ coin.symbol | upper }})</h3>
+    </a>
+    <p><strong>Price:</strong> ${{ coin.current_price | round(2) }}</p>
+    <p><strong>24h:</strong> {{ coin.price_change_percentage_24h | round(2) }}%</p>
+  </article>
+  {% endfor %}
+</div>
+
+<!-- Ad unit placeholder below the list -->
+{% if site.adsense.slotId %}
+<ins class="adsbygoogle" style="display:block" data-ad-client="{{ site.adsense.publisherId }}" data-ad-slot="{{ site.adsense.slotId }}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+{% endif %}
